@@ -1,0 +1,32 @@
+"""learning_system URL Configuration
+
+The `urlpatterns` list routes URLs to views. For more information please see:
+    https://docs.djangoproject.com/en/4.0/topics/http/urls/
+Examples:
+Function views
+    1. Add an import:  from my_app import views
+    2. Add a URL to urlpatterns:  path('', views.home, name='home')
+Class-based views
+    1. Add an import:  from other_app.views import Home
+    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
+Including another URLconf
+    1. Import the include() function: from django.urls import include, path
+    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+"""
+from django.contrib import admin
+from django.urls import path
+from Learnapp.views import frontpage, registerPage, loginPage, logoutUser, course_detail,levelpage, support, profilepage
+from django.conf import settings
+from django.conf.urls.static import static
+
+urlpatterns = [
+    path('register/', registerPage, name='register'),
+    path('login/', loginPage, name='login'),
+    path('logout/', logoutUser, name='logout'),
+    path('admin/', admin.site.urls),
+    path('level/', levelpage, name='levelpage'),
+    path('profile/', profilepage, name='profilepage'),
+    path('support/', support, name='support'),
+    path('', frontpage, name='frontpage'),
+    path('<slug:slug>/', course_detail, name='course_detail'),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
