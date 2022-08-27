@@ -1,5 +1,4 @@
 from dataclasses import fields
-from socket import fromshare
 from urllib import request
 from django import forms
 from .models import Student, Support
